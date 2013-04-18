@@ -52,9 +52,11 @@ describe "User pages" do
 
       describe "after submission" do
         before { click_button submit }
+        let(:user) { User.find_by_email('user@example.com') }
 
-        it { should have_selector('title', text: "Example User") }
-        it { should have_selector('h1', text: "Example User") }
+        it { should have_selector('title', text: user.name) }
+        it { should have_selector('h1', text: user.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
     end
   end
